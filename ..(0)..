@@ -1,0 +1,45 @@
+DOCKER 
+# Use the official Nginx image
+FROM nginx:latest
+
+# Copy the static website files to the Nginx HTML directory
+COPY index.html /usr/share/nginx/html/index.html
+
+# Expose port 80 to serve the website
+EXPOSE 80
+
+# No need for CMD as the default Nginx command will serve the content 
+
+INDEX.HTML
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Static Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>viswa is hero</h1>
+    <p>This site is being served via an Nginx Docker container!</p>
+</body>
+</html>
+
+TERMINAL
+docker build -t html-docker .
+docker run -d -p 8080:80 html-docker .
+docker ps
